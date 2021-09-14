@@ -37,11 +37,13 @@ namespace AzureCognitiveSearch.PowerSkills.Geo.GeoPointFromName
             string azureMapsKey = Environment.GetEnvironmentVariable(azureMapsKeySetting, EnvironmentVariableTarget.Process) ?? "";
 
             WebApiSkillResponse response = await WebApiSkillHelpers.ProcessRequestRecordsAsync(skillName, requestRecords,
-                async (inRecord, outRecord) => {
-                    var address = inRecord.Data["address"] as string;
-                    string uri = azureMapsUri
-                        + "?q=" + Uri.EscapeDataString(address)
-                        + "&key=" + Uri.EscapeDataString(azureMapsKey);
+                async (inRecord, outRecord) =>
+                {
+                var locations = inRecord.Data["locations"] as string;
+                string uri = azureMapsUri
+                    + "?q=" + Uri.EscapeDataString(locations)
+                    + "&key=" + Uri.EscapeDataString(azureMapsKey)
+                    + "&maxRes=1");
 
                     IEnumerable<Geography> geographies =
                         await WebApiSkillHelpers.FetchAsync<Geography>(uri, "resourceSets..resources..point");
