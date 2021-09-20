@@ -16,7 +16,7 @@ namespace AzureCognitiveSearch.PowerSkills.Text.BingEntitySearch
 {
     public static class BingEntitySearch
     {
-        private static readonly string bingApiEndpoint = "https://api.cognitive.microsoft.com/bing/v7.0/entities/";
+        private static readonly string bingApiEndpoint = "https://api.bing.microsoft.com/v7.0/entities/";
         private static readonly string bingApiKeySetting = "BING_API_KEY";
 
         private static readonly string[] entityTypes = new[] { "Person", "Organization", "Location" };
